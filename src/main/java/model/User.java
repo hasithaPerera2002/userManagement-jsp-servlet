@@ -2,24 +2,26 @@ package model;
 
 
 
-import enums.Gender;
 import enums.UserType;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 public class User {
 
     public User() throws SQLException {
     }
-    public User(String name, String email, String age, String address, UserType userType, Gender gender) throws SQLException {
+    public User(int id, String name, String email, String age, String address, UserType userType,String phone) throws SQLException {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.age = age;
         this.address = address;
         this.userType = userType;
-        this.gender = gender;
+        this.phone=phone;
+
     }
+
+    private int id;
 
     private String name;
     private String email;
@@ -29,8 +31,16 @@ public class User {
 
     private UserType userType;
 
-    private Gender gender;
+    private String phone;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+    	this.id=id;
+    }
     public  String getName() {
         return name;
     }
@@ -71,13 +81,15 @@ public class User {
         this.userType = userType;
     }
 
-    public Gender getGender() {
-        return gender;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    public void setPhone(String phone) {
+    	this.phone=phone;
     }
+
+
 
 
 

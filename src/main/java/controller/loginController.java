@@ -42,7 +42,7 @@ public class loginController extends HttpServlet {
             PrintWriter out = resp.getWriter();
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Invalid username or password');");
-            out.println("location='login.jsp';");
+            out.println("location='index.jsp';");
             out.println("</script>");
         }
     }
