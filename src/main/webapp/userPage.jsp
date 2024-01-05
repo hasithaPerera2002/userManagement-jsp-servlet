@@ -315,7 +315,10 @@
                     <div class="col-sm-6">
                         <h2> <b>Items</b></h2>
                     </div>
-
+                    <div class="col-sm-6">
+                        <!-- Search bar -->
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+                    </div>
                 </div>
             </div>
             <table class="table table-striped table-hover">
@@ -323,7 +326,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Category</th>
+
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>SupplierId</th>
@@ -345,7 +348,7 @@
 <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" action="supplierController">
+            <form method="post" action="itemController">
                 <div class="modal-header">
                     <h4 class="modal-title">Edit Item</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -355,26 +358,12 @@
                         <label>Id</label>
                         <input type="text" name="id" class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name" class="form-control" required>
-                    </div>
+
                     <div class="form-group">
                         <label>Quantity</label>
                         <input type="number" name="quantity" class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <label>Category</label>
-                        <input type="text" class="form-control" name="category" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Price</label>
-                        <input type="number" name="price" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
+
 
 
                 </div>
@@ -401,19 +390,18 @@
                 $("#userTableBody").empty();
 
                 if (data && data.length > 0) {
-                    $.each(data, function (index, supplier) {
+                    $.each(data, function (index, item) {
                         $("#userTableBody").append(
                             "<tr>" +
-                            "<td>" + supplier.id + "</td>" +
-                            "<td>" + supplier.name + "</td>" +
-                            "<td>" + supplier.quantity + "</td>" +
-                            "<td>" + supplier.price + "</td>" +
-                            "<td>" + supplier.category + "</td>" +"<td>" + supplier.email + "</td>" +
+                            "<td>" + item.id + "</td>" +
+                            "<td>" + item.name + "</td>" +
+                            "<td>" + item.quantity + "</td>" +
+                            "<td>" + item.price + "</td>" +
+                            "<td>" + item.supplierId + "</td>" +
                             "<td class='d-flex'>" +
                             "<a href='#editEmployeeModal' class='mr-2' data-toggle='modal'>" +
                             " <button class='btn btn-warning'>Edit</button>" +
                             " </a>"+
-                            '<button onclick="deleteUser(' + supplier.id + ')" class="btn btn-danger">Delete</button>' +
                             '</td>' +
                             "</tr>"
                         );
@@ -428,6 +416,12 @@
                 // Display an error message in the table body
                 $("#userTableBody").empty().append("<tr><td colspan='7'>Error fetching suppliers list</td></tr>");
             }
+        });
+        $('#searchInput').on('keyup', function () {
+            var searchText = $(this).val().toLowerCase(); // Get the entered text and convert to lowercase
+            $('#userTableBody tr').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1); // Show/hide rows based on the search text
+            });
         });
     });
 
