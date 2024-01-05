@@ -318,8 +318,7 @@
                     <div class="col-sm-6">
                         <a href="#addEmployeeModal" class="btn btn-success"
                            data-toggle="modal"><span>Add New Employee</span></a>
-                        <a href="#deleteEmployeeModal" class="btn btn-danger"
-                           data-toggle="modal"><span>Delete</span></a>
+
                     </div>
                 </div>
             </div>

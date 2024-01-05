@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,6 +38,7 @@ public class supplierController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println(req.getParameter("name"));
+        System.out.println(req.getParameter("email")+req.getParameter("category")+req.getParameter("quantity")+req.getParameter("price"));
         String id = req.getParameter("id");
         String name = req.getParameter("name");
         String email = req.getParameter("email");
@@ -43,7 +46,7 @@ public class supplierController extends HttpServlet {
         String quantity = req.getParameter("quantity");
         String price = req.getParameter("price");
 
-        if(id==null) {
+        if (id == null) {
             try {
                 Connection connection = DbUtil.getInstance().getconnection();
                 PreparedStatement preparedStatement = connection.prepareStatement("insert into supplier(name,email,category,quantity,price) values(?,?,?,?,?)");
@@ -53,12 +56,12 @@ public class supplierController extends HttpServlet {
                 preparedStatement.setString(4, quantity);
                 preparedStatement.setString(5, price);
                 preparedStatement.executeUpdate();
-                resp.sendRedirect("supplier.jsp");
+                resp.sendRedirect("supplierManagement.jsp");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
-        }else{
+        } else {
             try {
                 Connection connection = DbUtil.getInstance().getconnection();
                 PreparedStatement preparedStatement = connection.prepareStatement("update supplier set name=?,email=?,category=?,quantity=?,price=? where id=?");
@@ -69,7 +72,7 @@ public class supplierController extends HttpServlet {
                 preparedStatement.setString(5, price);
                 preparedStatement.setString(6, id);
                 preparedStatement.executeUpdate();
-                resp.sendRedirect("supplier.jsp");
+                resp.sendRedirect("supplierManagement.jsp");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -78,27 +81,50 @@ public class supplierController extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id=req.getParameter("id");
+        String id = req.getParameter("id");
         try {
             Connection connection = DbUtil.getInstance().getconnection();
             PreparedStatement preparedStatement = connection.prepareStatement("delete from supplier where id=?");
             preparedStatement.setString(1, id);
-            preparedStatement.executeUpdate();
-            resp.sendRedirect("supplier.jsp");
+            int executeUpdate = preparedStatement.executeUpdate();
+
+            if (executeUpdate > 0) {
+                System.out.println("A supplier was deleted successfully!");
+                resp.setStatus(200);
+            }
+
+            resp.sendRedirect("supplierManagement.jsp");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public List<Supplier> getSuppliers() {
-        List<Supplier> suppliers = null;
+        List<Supplier> suppliers = new ArrayList<>();
         try {
             Connection connection = DbUtil.getInstance().getconnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from supplier");
-            preparedStatement.executeQuery();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM supplier");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String category = resultSet.getString("category"); // Assuming category is a String
+                int quantity = resultSet.getInt("quantity");
+                double price = resultSet.getDouble("price"); // Assuming price is a numeric field
+
+                Supplier supplier = new Supplier(id, name,  category, quantity, price,email);
+                suppliers.add(supplier);
+            }
+            // Close the ResultSet, PreparedStatement, and Connection after usage
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return suppliers;
     }
+
 }
