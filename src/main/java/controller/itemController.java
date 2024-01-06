@@ -60,4 +60,21 @@ public class itemController extends HttpServlet {
         }
         return itemsList;
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+        String quantity = req.getParameter("quantity");
+        try {
+            Connection connection = DbUtil.getInstance().getconnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("update item set quantity=? where id=?");
+
+            preparedStatement.setString(1, quantity);
+            preparedStatement.setString(2, id);
+            preparedStatement.executeUpdate();
+            resp.sendRedirect("userItemManagement.jsp");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
