@@ -330,6 +330,7 @@
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>SupplierId</th>
+                    <th>Total Value</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -462,10 +463,11 @@
                             "<td>" + item.quantity + "</td>" +
                             "<td>" + item.price + "</td>" +
                             "<td>" + item.supplierId + "</td>" +
+                            "<td>" + item.price * item.quantity + "</td>" +
                             "<td class='d-flex'>" +
                             "<a href='#editEmployeeModal' class='mr-2' data-toggle='modal'>" +
                             " <button class='btn btn-warning'>Edit</button>" +
-                            " </a>"+
+                            " </a>" +
                             '<button onclick="deleteUser(' + item.id + ')" class="btn btn-danger">Delete</button>' +
                             '</td>' +
                             "</tr>"
