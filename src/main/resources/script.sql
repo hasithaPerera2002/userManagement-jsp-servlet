@@ -26,4 +26,13 @@ CREATE TABLE item (
                       supplier_id INT,
                       FOREIGN KEY (supplier_id) REFERENCES supplier(id)
 );
+CREATE TABLE orders (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        orderDate DATE,
+                        totalAmount INT,
+                        status VARCHAR(50),
+                        quantity INT,
+                        itemId INT
+);
+
 
