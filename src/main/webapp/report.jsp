@@ -318,18 +318,35 @@
 
                 </div>
             </div>
-            <table class="table table-striped table-hover">
+            <table class="table table-striped my-5 table-hover">
                 <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Name</th>
                     <th>Quantity</th>
                     <th>Price</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>SupplierId</th>
+
                 </tr>
                 </thead>
-                <tbody id="userTableBody">
+                <tbody id="itemTableBody">
+
+
+                </tbody>
+            </table>
+            <table class="table table-striped my-5 table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>OrderDate</th>
+                    <th>TotalAmount</th>
+                    <th>Status</th>
+                    <th>Quantity</th>
+                    <th>ItemId</th>
+
+                </tr>
+                </thead>
+                <tbody id="orderTableBody">
 
 
                 </tbody>
@@ -345,57 +362,77 @@
     const arr = []
     $(document).ready(function () {
         $.ajax({
-            url: "http://localhost:8080/userManagement/orders",
+            url: "http://localhost:8080/userManagement/reportController?action=inventoryStatus",
             type: "GET",
             dataType: "json",
             success: function (data) {
-                console.log("User list fetched successfully:", data);
-                $("#userTableBody").empty();
+                console.log("Userll list fetched successfully:", data);
+                $("#itemTableBody").empty();
                 arr.push(...data)
                 console.log(data)
                 if (data && data.length > 0) {
                     $.each(data, function (index, item) {
-                        $("#userTableBody").append(
+                        $("#itemTableBody").append(
                             "<tr>" +
                             "<td>" + item.id + "</td>" +
+                            "<td>" + item.name + "</td>" +
                             "<td>" + item.quantity + "</td>" +
-                            "<td>" + item.totalAmount + "</td>" +
-                            "<td>" + item.orderDate + "</td>" +
-                            "<td>" + item.status + "</td>" +
-                            "<td class='d-flex'>" +
-                            "<a href='#orderDetailsModal' class='mr-2' data-toggle='modal'>" +
-                            " <button class='btn btn-primary view-btn'>View</button>" +
-                            " </a>" +
-                            '</td>' +
+
+                            "<td>" + item.price + "</td>" +
+                            "<td>" + item.supplierId + "</td>" +
                             "</tr>"
                         );
                     });
                 } else {
-                    // If the data is empty or no users are received
-                    $("#userTableBody").append("<tr><td colspan='7'>No items found</td></tr>");
+
+                    $("#itemTableBody").append("<tr><td colspan='7'>No items found</td></tr>");
                 }
             },
             error: function (xhr, status, error) {
                 console.error("Error fetching item list:", error);
-                // Display an error message in the table body
-                $("#userTableBody").empty().append("<tr><td colspan='7'>Error fetching items list</td></tr>");
+
+                $("#itemTableBody").empty().append("<tr><td colspan='7'>Error fetching items list</td></tr>");
             }
         });
-    });
+        $.ajax({
+            url: "http://localhost:8080/userManagement/reportController?action=salesReport",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                console.log("User list fetched successfully:", data);
+                $("#orderTableBody").empty();
+                arr.push(...data)
+                console.log(data)
+                if (data && data.length > 0) {
+                    $.each(data, function (index, item) {
+                        $("#orderTableBody").append(
+                            "<tr>" +
+                            "<td>" + item.id + "</td>" +
+                            "<td>" + item.orderDate + "</td>" +
+                            "<td>" + item.totalAmount + "</td>" +
+                            "<td>" + item.status + "</td>" +
+                            "<td>" + item.quantity + "</td>" +
+                            "<td>" + item.itemId + "</td>" +
+                            "</tr>"
+                        );
+                    });
+                } else {
 
-    $(document).on('click', '.view-btn', function () {
-        const rowIndex = $(this).closest('tr').index();
-        const order = arr[rowIndex];
+                    $("#orderTableBody").append("<tr><td colspan='7'>No orders found</td></tr>");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching item list:", error);
 
-        $('#orderDetailsModal .modal-body').html(`
-        <p><strong>Order ID:</strong> ${order.id}</p>
-        <p><strong>Quantity:</strong> ${order.quantity}</p>
-        <p><strong>Total Amount:</strong> ${order.totalAmount}</p>
-        <p><strong>Order Date:</strong> ${order.orderDate}</p>
-        <p><strong>Status:</strong> ${order.status}</p>
+                $("#itemTableBody").empty().append("<tr><td colspan='7'>Error fetching items list</td></tr>");
+            }
+        });
+    }
 
-    `);
-    });
+
+    );
+
+
 
 
 </script>

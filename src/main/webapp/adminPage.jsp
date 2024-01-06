@@ -47,6 +47,11 @@
                         Manage Suppliers
                     </div>
                 </button>
+            <button class="card bg-dark ml-4 text-white" name="action" value="reports" type="submit" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                       Reports
+                    </div>
+                </button>
 
 
         </div>
