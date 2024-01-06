@@ -326,7 +326,6 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>SupplierId</th>
