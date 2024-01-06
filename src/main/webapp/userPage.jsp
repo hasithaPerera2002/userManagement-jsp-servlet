@@ -313,7 +313,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2> <b>Items</b></h2>
+                        <h2><b>Items</b></h2>
                     </div>
                     <div class="col-sm-6">
                         <!-- Search bar -->
@@ -330,6 +330,7 @@
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>SupplierId</th>
+                    <th>Total Price</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -365,7 +366,6 @@
                     </div>
 
 
-
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -398,10 +398,11 @@
                             "<td>" + item.quantity + "</td>" +
                             "<td>" + item.price + "</td>" +
                             "<td>" + item.supplierId + "</td>" +
+                            "<td>" + item.quantity * item.price + "</td>" +
                             "<td class='d-flex'>" +
                             "<a href='#editEmployeeModal' class='mr-2' data-toggle='modal'>" +
                             " <button class='btn btn-warning'>Edit</button>" +
-                            " </a>"+
+                            " </a>" +
                             '</td>' +
                             "</tr>"
                         );
@@ -424,7 +425,6 @@
             });
         });
     });
-
 
 
 </script>
