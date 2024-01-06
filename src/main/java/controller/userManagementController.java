@@ -19,12 +19,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/********************************************************************
- * --
- * Author: hasit
- * Date: 1/5/2024
- * --
- ********************************************************************/
 @WebServlet(name = "controller.userManagementController", value = "/userManagementController")
 public class userManagementController extends HttpServlet {
 
@@ -46,7 +40,6 @@ public class userManagementController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getParameter("name"));
         String id = req.getParameter("id");
         String name = req.getParameter("name");
         String email = req.getParameter("email");
@@ -73,7 +66,6 @@ public class userManagementController extends HttpServlet {
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
-                    System.out.println("A new user was inserted successfully!");
                     resp.sendRedirect("userManagement.jsp");
                 }
             } catch (SQLException ex) {
@@ -94,7 +86,6 @@ public class userManagementController extends HttpServlet {
                 statement.setString(6, id);
                 int rowsUpdated = statement.executeUpdate();
                 if (rowsUpdated > 0) {
-                    System.out.println("An existing user was updated successfully!");
                     resp.sendRedirect("userManagement.jsp");
                 }
 
@@ -122,7 +113,6 @@ public class userManagementController extends HttpServlet {
 
                 String phone = resultSet.getString("phone");
 
-                System.out.println("id: " + id + ", name: " + name + ", email: " + email + ", age: " + age + ", address: " + address + ", phone: " + phone);
 
                 User user = new User(id, name, email, age, address, UserType.USER, phone);
                 userList.add(user);
@@ -144,7 +134,6 @@ public class userManagementController extends HttpServlet {
                 int rowsAffected = statement.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    System.out.println("User with ID " + userId + " deleted successfully");
                     resp.sendRedirect("userManagement.jsp");
                 } else {
                     System.out.println("User with ID " + userId + " not found");

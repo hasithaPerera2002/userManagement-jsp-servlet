@@ -13,7 +13,6 @@ public class userPageController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getParameter("action"));
         String action = req.getParameter("action");
         if ("order".equals(action)) {
             resp.sendRedirect("orderPage.jsp");

@@ -456,7 +456,6 @@
             type: "GET",
             dataType: "json",
             success: function (data) {
-                console.log("User list fetched successfully:", data);
                 $("#userTableBody").empty();
 
                 if (data && data.length > 0) {
@@ -472,7 +471,7 @@
                             "<td class='d-flex'>" +
                             "<a href='#editEmployeeModal' class='mr-2' data-toggle='modal'>" +
                             " <button class='btn btn-warning'>Edit</button>" +
-                            " </a>"+
+                            " </a>" +
                             '<button onclick="deleteUser(' + user.id + ')" class="btn btn-danger">Delete</button>' +
                             '</td>' +
                             "</tr>"
@@ -502,7 +501,6 @@
 
                 success: function (response) {
 
-                    console.log('Employee deleted successfully');
 
                 },
                 error: function (xhr, status, error) {

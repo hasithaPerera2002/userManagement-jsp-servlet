@@ -497,7 +497,6 @@
 
                 success: function (response) {
 
-                    console.log('Item deleted successfully');
 
                 },
 

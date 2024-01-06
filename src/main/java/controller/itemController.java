@@ -18,18 +18,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/********************************************************************
- * --
- * Author: hasit
- * Date: 1/5/2024
- * --
- ********************************************************************/
 @WebServlet(name = "controller.itemController", value = "/itemController")
 public class itemController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("doGet items");
         resp.setContentType("application/json");
         List<Item> itemList = getItems();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -41,7 +34,6 @@ public class itemController extends HttpServlet {
 
     public List<Item> getItems() {
         List<Item> itemsList = new ArrayList<>();
-        System.out.println("hiii");
         try {
             Connection connection = DbUtil.getInstance().getconnection();
             PreparedStatement preparedStatement = connection.prepareStatement("select * from item");
@@ -52,7 +44,6 @@ public class itemController extends HttpServlet {
                 int quantity = resultSet.getInt("quantity");
                 double price = resultSet.getDouble("price");
                 String supplierId = resultSet.getString("supplier_id");
-                System.out.println(id + " " + name + " " + quantity + " " + price + " " + supplierId);
                 itemsList.add(new Item(id, name, quantity, price, Integer.parseInt(supplierId)));
             }
         } catch (SQLException e) {

@@ -47,7 +47,6 @@ public class reportController extends HttpServlet {
 
     private List<Item> generateInventoryStatusReport(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         List<Item> itemsList = new ArrayList<>();
-        System.out.println("hiii");
         try {
             Connection connection = DbUtil.getInstance().getconnection();
             PreparedStatement preparedStatement = connection.prepareStatement("select * from item");
@@ -58,7 +57,6 @@ public class reportController extends HttpServlet {
                 int quantity = resultSet.getInt("quantity");
                 double price = resultSet.getDouble("price");
                 String supplierId = resultSet.getString("supplier_id");
-                System.out.println(id + " " + name + " " + quantity + " " + price + " " + supplierId);
                 itemsList.add(new Item(id, name, quantity, price, Integer.parseInt(supplierId)));
             }
         } catch (SQLException e) {
@@ -83,7 +81,6 @@ public class reportController extends HttpServlet {
                 int quantity = resultSet.getInt("quantity");
                 int itemId = resultSet.getInt("itemId");
 
-                System.out.println(id + " " + orderDate + " " + totalAmount + " " + status + " " + quantity + " " + itemId);
 
                 Order order = new Order(id, orderDate, totalAmount, status, quantity, itemId);
                 orderList.add(order);

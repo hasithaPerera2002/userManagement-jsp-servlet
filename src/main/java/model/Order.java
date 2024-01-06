@@ -1,8 +1,6 @@
 package model;
 
-import java.math.BigDecimal;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class Order {
     private int id;
@@ -15,17 +13,13 @@ public class Order {
     private int itemId;
 
 
-
-
-
-
-    public Order(int id, Date orderDate, int totalAmount, String status,int quantity,int itemId) {
+    public Order(int id, Date orderDate, int totalAmount, String status, int quantity, int itemId) {
         this.id = id;
         this.orderDate = orderDate;
         this.total = totalAmount;
         this.status = status;
-        this.quantity=quantity;
-        this.itemId=itemId;
+        this.quantity = quantity;
+        this.itemId = itemId;
     }
 
 
@@ -61,19 +55,20 @@ public class Order {
         this.status = status;
     }
 
-    public int getQuantity(){
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity){
-        this.quantity=quantity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
-    public int getItemId(){
+
+    public int getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId){
-        this.itemId=itemId;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
 

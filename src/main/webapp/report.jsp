@@ -366,10 +366,8 @@
             type: "GET",
             dataType: "json",
             success: function (data) {
-                console.log("Userll list fetched successfully:", data);
                 $("#itemTableBody").empty();
                 arr.push(...data)
-                console.log(data)
                 if (data && data.length > 0) {
                     $.each(data, function (index, item) {
                         $("#itemTableBody").append(
@@ -399,16 +397,14 @@
             type: "GET",
             dataType: "json",
             success: function (data) {
-                console.log("User list fetched successfully:", data);
                 $("#orderTableBody").empty();
                 arr.push(...data)
-                console.log(data)
                 if (data && data.length > 0) {
                     $.each(data, function (index, item) {
                         $("#orderTableBody").append(
                             "<tr>" +
                             "<td>" + item.id + "</td>" +
-                            "<td>" + item.orderDate + "</td>" +
+                            "<td>" + new Date(item.orderDate).toISOString().split("T")[0] + "</td>" +
                             "<td>" + item.totalAmount + "</td>" +
                             "<td>" + item.status + "</td>" +
                             "<td>" + item.quantity + "</td>" +

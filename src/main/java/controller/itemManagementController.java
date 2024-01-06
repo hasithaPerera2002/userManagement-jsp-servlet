@@ -24,8 +24,6 @@ public class itemManagementController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("doPost items");
-        System.out.println(req.getParameter("name") + " " + req.getParameter("price") + " " + req.getParameter("quantity") + " " + req.getParameter("supplierId"));
         String id = req.getParameter("id");
         String name = req.getParameter("name");
         String price = req.getParameter("price");

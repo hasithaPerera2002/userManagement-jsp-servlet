@@ -459,7 +459,6 @@
             type: "GET",
             dataType: "json",
             success: function (data) {
-                console.log("Supplier list fetched successfully:", data);
                 $("#userTableBody").empty();
 
                 if (data && data.length > 0) {
@@ -504,7 +503,6 @@
 
                 success: function (response) {
                     location.reload();
-                    console.log('Supplier deleted successfully');
 
                 },
 

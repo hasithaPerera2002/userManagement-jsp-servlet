@@ -43,7 +43,6 @@ public class orderListController extends HttpServlet {
                 int quantity = resultSet.getInt("quantity");
                 int itemId = resultSet.getInt("itemId");
 
-                System.out.println(id + " " + orderDate + " " + totalAmount + " " + status + " " + quantity + " " + itemId);
 
                 Order order = new Order(id, orderDate, totalAmount, status, quantity, itemId);
                 orderList.add(order);

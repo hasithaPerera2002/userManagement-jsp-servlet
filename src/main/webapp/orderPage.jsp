@@ -74,7 +74,6 @@
         var selectedOption = $('#categorySelect').find(":selected");
         var selectedItemId = selectedOption.data('item-id'); // Retrieve item ID from selected option
 
-        console.log(selectedItemId)
         // Add the selected item's ID to the form data before submitting
         $(this).append('<input type="hidden" name="selectedItemId" value="' + selectedItemId + '">');
 
@@ -92,7 +91,6 @@
                     var categorySelect = $('#categorySelect');
 
                     categorySelect.find('option:not(:first-child)').remove();
-                    console.log(data)
 
                     data.forEach(function (category) {
                         categorySelect.append($('<option>', {
@@ -112,9 +110,7 @@
             });
             $('#categorySelect').change(function () {
 
-                console.log("hii")
                 var selectedOption = $(this).find(":selected");
-                console.log(selectedOption)
 
                 $('#inventoryQuantity').val(selectedOption.data('quantity'));
                 $('#pricePerOne').val(selectedOption.data('price'));
@@ -123,7 +119,6 @@
                 var pricePerOne = parseInt($('#pricePerOne').val()) || 0;
                 var total = pricePerOne * quantity;
 
-                console.log(quantity)
 
                 const qOnHand = selectedOption.data('quantity')
                 if (qOnHand < 10) {

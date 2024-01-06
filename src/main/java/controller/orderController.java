@@ -23,13 +23,11 @@ public class orderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println(req.getParameter("selectedItemId"));
         String itemId = req.getParameter("selectedItemId");
         String quantity = req.getParameter("quantity");
         String total = req.getParameter("total");
 
 
-        System.out.println(itemId+"-- "+quantity+" --- "+total+" --- ");
 
             try {
                 Connection connection = DbUtil.getInstance().getconnection();
@@ -62,7 +60,6 @@ public class orderController extends HttpServlet {
                         System.out.println("Failed to update item quantity!");
                     }
 
-                    // Redirect to the desired page
                     resp.sendRedirect("orderPage.jsp");
                 }
             } catch (SQLException ex) {
@@ -74,7 +71,6 @@ public class orderController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("doGet items");
         resp.setContentType("application/json");
         List<Item> itemList = getItems();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -86,7 +82,6 @@ public class orderController extends HttpServlet {
 
     public List<Item> getItems() {
         List<Item> itemsList = new ArrayList<>();
-        System.out.println("hiii");
         try {
             Connection connection = DbUtil.getInstance().getconnection();
             PreparedStatement preparedStatement = connection.prepareStatement("select * from item");
@@ -97,7 +92,6 @@ public class orderController extends HttpServlet {
                 int quantity = resultSet.getInt("quantity");
                 double price = resultSet.getDouble("price");
                 String supplierId = resultSet.getString("supplier_id");
-                System.out.println(id + " " + name + " " + quantity + " " + price + " " + supplierId);
                 itemsList.add(new Item(id, name, quantity, price, Integer.parseInt(supplierId)));
             }
         } catch (SQLException e) {

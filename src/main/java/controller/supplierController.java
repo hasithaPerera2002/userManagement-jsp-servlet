@@ -37,8 +37,6 @@ public class supplierController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getParameter("name"));
-        System.out.println(req.getParameter("email")+req.getParameter("category")+req.getParameter("quantity")+req.getParameter("price"));
         String id = req.getParameter("id");
         String name = req.getParameter("name");
         String email = req.getParameter("email");
@@ -89,7 +87,6 @@ public class supplierController extends HttpServlet {
             int executeUpdate = preparedStatement.executeUpdate();
 
             if (executeUpdate > 0) {
-                System.out.println("A supplier was deleted successfully!");
                 resp.setStatus(200);
             }
 
