@@ -1,13 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Collections" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: hasit
-  Date: 1/5/2024
-  Time: 2:42 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -335,6 +328,22 @@
                 </tbody>
             </table>
 
+        </div>
+    </div>
+</div>
+
+<div id="orderDetailsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Order Details</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>

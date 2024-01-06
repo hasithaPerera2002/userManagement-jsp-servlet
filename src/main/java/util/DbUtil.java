@@ -2,7 +2,6 @@ package util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DbUtil {
 
@@ -20,12 +19,12 @@ public class DbUtil {
         return instance;
     }
 
-    public Connection getconnection(){
-        try{
+    public Connection getconnection() {
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String unicode="useSSL=false&autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8";
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/userdb?"+unicode, "root", "1234");
-        }catch(Exception ex){
+            String unicode = "useSSL=false&autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8";
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/userdb?" + unicode, "root", "");
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             System.out.println("couldn't connect!");
             throw new RuntimeException(ex);

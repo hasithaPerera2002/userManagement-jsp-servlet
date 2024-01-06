@@ -69,8 +69,8 @@ public class itemManagementController extends HttpServlet {
             preparedStatement.setString(1, id);
             int executeUpdate = preparedStatement.executeUpdate();
 
-            if (executeUpdate>0){
-                System.out.println("Item with id "+id+" deleted successfully");
+            if (executeUpdate > 0) {
+                System.out.println("Item with id " + id + " deleted successfully");
                 resp.setStatus(200);
             }
             resp.sendRedirect("adminItemManagement.jsp");

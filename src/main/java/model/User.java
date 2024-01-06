@@ -1,47 +1,43 @@
 package model;
 
 
-
 import enums.UserType;
 
 import java.sql.SQLException;
 
 public class User {
 
+    private int id;
+    private String name;
+    private String email;
+    private String age;
+    private String address;
+    private UserType userType;
+    private String phone;
+
     public User() throws SQLException {
     }
-    public User(int id, String name, String email, String age, String address, UserType userType,String phone) throws SQLException {
+
+    public User(int id, String name, String email, String age, String address, UserType userType, String phone) throws SQLException {
         this.id = id;
         this.name = name;
         this.email = email;
         this.age = age;
         this.address = address;
         this.userType = userType;
-        this.phone=phone;
+        this.phone = phone;
 
     }
-
-    private int id;
-
-    private String name;
-    private String email;
-    private String age;
-
-    private String address;
-
-    private UserType userType;
-
-    private String phone;
-
 
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
-    	this.id=id;
+        this.id = id;
     }
-    public  String getName() {
+
+    public String getName() {
         return name;
     }
 
@@ -86,11 +82,8 @@ public class User {
     }
 
     public void setPhone(String phone) {
-    	this.phone=phone;
+        this.phone = phone;
     }
-
-
-
 
 
 }

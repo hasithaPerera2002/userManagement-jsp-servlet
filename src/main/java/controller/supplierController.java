@@ -111,7 +111,7 @@ public class supplierController extends HttpServlet {
                 int quantity = resultSet.getInt("quantity");
                 double price = resultSet.getDouble("price"); // Assuming price is a numeric field
 
-                Supplier supplier = new Supplier(id, name,  category, quantity, price,email);
+                Supplier supplier = new Supplier(id, name, category, quantity, price, email);
                 suppliers.add(supplier);
             }
             // Close the ResultSet, PreparedStatement, and Connection after usage

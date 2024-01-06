@@ -9,13 +9,14 @@ public class Supplier {
     private double price;
 
     private String email;
-    public Supplier(int id, String name, String category, int quantity, double price,String email) {
+
+    public Supplier(int id, String name, String category, int quantity, double price, String email) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.quantity = quantity;
         this.price = price;
-        this.email=email;
+        this.email = email;
     }
 
     // Getters and Setters
@@ -25,7 +26,7 @@ public class Supplier {
     }
 
     public void setId(int id) {
-    	this.id=id;
+        this.id = id;
     }
 
     public String getName() {
@@ -57,7 +58,7 @@ public class Supplier {
     }
 
     public void setEmail(String email) {
-        this.email=email;
+        this.email = email;
     }
 
     public double getPrice() {

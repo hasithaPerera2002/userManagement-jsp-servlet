@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controller.userPageController",value = "/userPageController")
+@WebServlet(name = "controller.userPageController", value = "/userPageController")
 public class userPageController extends HttpServlet {
 
     @Override

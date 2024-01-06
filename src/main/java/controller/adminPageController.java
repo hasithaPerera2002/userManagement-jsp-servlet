@@ -21,7 +21,7 @@ public class adminPageController extends HttpServlet {
             resp.sendRedirect("adminItemManagement.jsp");
         } else if ("supplier".equals(action)) {
             resp.sendRedirect("supplierManagement.jsp");
-        }else if ("reports".equals(action)) {
+        } else if ("reports".equals(action)) {
             resp.sendRedirect("report.jsp");
         }
     }
