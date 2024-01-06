@@ -32,7 +32,8 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card bg-light p-5 ">
                     <form id="orderForm" action="orderController" method="post">
-                        <select id="categorySelect" class="custom-select" name="selectedItemId"> <!-- Move name attribute to select tag -->
+                        <select id="categorySelect" class="custom-select" name="selectedItemId">
+                            <!-- Move name attribute to select tag -->
                             <option selected>Category</option>
                         </select>
 
@@ -40,6 +41,9 @@
                             <label>Quantity At Inventory</label>
                             <input type="number" class="form-control" id="inventoryQuantity" readonly>
                         </div>
+
+                        <small id="quantityWarning" class="text-warning" style="display: none;">Low Quantity</small>
+
                         <div class="form-group">
                             <label>Quantity</label>
                             <input type="number" name="quantity" class="form-control" id="quantity">
@@ -96,7 +100,7 @@
                             text: category.name,
                             'data-price': category.price,
                             'data-quantity': category.quantity,
-                            name:'itemId'
+                            name: 'itemId'
 
                         }));
                     });
@@ -107,6 +111,8 @@
 
             });
             $('#categorySelect').change(function () {
+
+                console.log("hii")
                 var selectedOption = $(this).find(":selected");
                 console.log(selectedOption)
 
@@ -116,6 +122,15 @@
                 var quantity = parseInt($('#quantity').val()) || 0;
                 var pricePerOne = parseInt($('#pricePerOne').val()) || 0;
                 var total = pricePerOne * quantity;
+
+                console.log(quantity)
+
+                const qOnHand = selectedOption.data('quantity')
+                if (qOnHand < 10) {
+                    $('#quantityWarning').show();
+                } else {
+                    $('#quantityWarning').hide();
+                }
 
                 $('#total').val(total);
             });
